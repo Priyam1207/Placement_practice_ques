@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        unordered_map<char,int> mp;
+        int count=0;
+        for(auto ch:s)
+            mp[ch]++;
+        for(auto i:mp)
+            if(i.second&1)
+               count++;
+        //cout<<count;
+        return s.size()-(count-(count>0));
+    }
+};
