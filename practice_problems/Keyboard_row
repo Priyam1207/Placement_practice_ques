@@ -1,0 +1,23 @@
+class Solution {
+private:
+    vector<int>keys={1,2,2,1,0,1,1,1,0,1,1,1,2,2,0,0,0,0,1,0,0,2,0,2,0,2 };
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<string> res;
+        for(auto &i:words){
+            if(isValid(i)){
+                res.push_back(i);
+            }
+        }
+        return res;
+    }
+    bool isValid(string str){
+        int line = keys[tolower(str[0])-'a'];
+        for(int i=1;i<str.size();i++){
+            str[i]=tolower(str[i]);
+            if(keys[str[i]-'a'] != line)
+                return false;
+        }
+        return true;
+    }
+};
