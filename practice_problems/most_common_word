@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        for(char &ch:paragraph){
+            ch=isalpha(ch)?tolower(ch):' ';
+        }
+        stringstream s(paragraph);
+        unordered_set<string>set(banned.begin(),banned.end());
+        unordered_map<string,int>res;
+        string word;
+        while(s>>word){
+            if(!set.count(word)){
+                res[word]++;
+            }
+        }
+        int freq=INT_MIN;
+        string temp="";
+        for(auto i:res){
+            if(i.second>freq){
+                temp=i.first;
+                freq=i.second;
+            }
+        }
+        return temp;
+    }
+};
